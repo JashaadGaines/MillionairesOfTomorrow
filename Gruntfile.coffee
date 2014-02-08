@@ -1,0 +1,138 @@
+module.exports = (grunt) ->
+
+  grunt.initConfig
+    meta:
+      pkg: grunt.file.readJSON('package.json')
+      app: 'app'
+      src: 'app/scripts/src'
+      lib: 'app/scripts/lib'
+      plugins: 'app/scripts/plugins'
+      less: 'app/styles/less'
+      css: 'app/styles/css'
+      coffee: 'app/scripts/coffee'
+      instrumentDir: 'build/instrument'
+
+    clean: ['<%= meta.src %>', 'specs/**/*.js', '<%= meta.css %>', 'build','reports', '*.nw']
+
+    coffeelint:
+      options:
+        indentation: value: 2, level: "error"
+        max_line_length: value: 150, level: "warn"
+        no_trailing_whitespace: level: "warn"
+
+
+      scripts:  ['Gruntfile.coffee', 'app/scripts/coffee/**/*.coffee', 'specs/**/*.coffee']
+
+    jasmine:
+      options:
+        specs: if grunt.option('tests') then "specs/**/#{grunt.option('tests')}*.js" else 'specs/**/*.spec.js'
+        junit:
+          path: 'reports'
+          consolidate: 'true'
+        template: require('grunt-template-jasmine-requirejs')
+        templateOptions:
+          pathToRequireJS: 'app/scripts/lib/require/require.js'
+          requireConfig:
+            baseUrl:  '<%= meta.instrumentDir %>/<%= meta.src %>'
+            paths:
+              jquery: '../../../../../<%= meta.lib %>/jquery'
+              lib: '../../../../../<%= meta.lib %>'
+              plugins: '../../../../../<%= meta.plugins %>'
+              stubs: '../../../../../specs/stubs'
+              device: '../../../../../specs/devices/test-device'
+
+    coffee:
+      src:
+        options: bare: true
+        files: [ expand: true, cwd:  '<%= meta.coffee %>', src:  ['**/*.coffee'], dest: '<%= meta.src %>', ext: '.js' ]
+
+      specs:
+        options: bare: true
+        files: [ expand: true, cwd: 'specs', src:  ['**/*.coffee'], dest: 'specs', rename: (s, d) -> "specs/#{d.replace('coffee','js')}"]
+
+    uglify:
+      production:
+        files: [ expand: true, cwd: '<%= meta.src %>', src: ['**/*.js'], dest: '<%= meta.src %>', ext: '.js' ]
+
+    less:
+      development:
+        options: paths: ["<%= meta.less %>/partials"]
+        files: [expand: true, cwd: '<%= meta.less %>/main', src:  ['**/*.less'], dest: 'build/app/styles/css', ext: '.css' ]
+      production:
+        options: paths: ["<%= meta.less %>/partials"]
+        files: [expand: true, cwd: '<%= meta.less %>/main', src:  ['**/*.less'], dest: '<%= meta.css %>', ext: '.css' ]
+
+    compress:
+      main:
+        options:
+          archive: 'build/app.zip'
+        files: [
+          cwd: 'build/app',
+          expand: true,
+          src: ['**/*']
+        ]
+
+    copy:
+      dist:
+        files: [
+          cwd: 'app/',
+          expand: true,
+          src: ['scripts/**/*.js', '**/*.html', 'images/**/*.*', 'fonts/**/*', "package.json"]
+          dest: 'build/app'
+        ]
+
+      archive:
+        files: [ src: 'build/app.zip', dest: 'package.nw' ]
+
+    watch:
+      files: ['<%= meta.coffee %>/**/*.coffee', '<%= meta.less %>/**/*.less', '<%= meta.app %>/**/*.html']
+      tasks: ['coffee:src', 'less:development', 'copy:dist', 'includes:templates', 'compress', 'copy:archive']
+
+    instrument:
+      files: '<%= meta.src %>/**/*.js'
+      options:
+        basePath: '<%= meta.instrumentDir%>'
+
+    verbosity:
+      quiet:
+        options: mode: 'hidden'
+        tasks: ['clean', 'copy:dist']
+
+    includes:
+      templates:
+        options:
+          includePath: 'app/static_templates'
+        cwd: 'build/app'
+        src: [ '**/*.html' ]
+        dest: 'build/app'
+
+    cssmin:
+      minify:
+        expand: true
+        cwd: '<%= meta.css %>'
+        src: ['**/*.css']
+        dest: 'build/app/styles/css'
+
+  npmTasks = ['grunt-contrib-jasmine', 'grunt-contrib-coffee', 'grunt-contrib-clean',
+              'grunt-contrib-watch', 'grunt-contrib-compress', 'grunt-contrib-copy', 'grunt-coffeelint',
+              'grunt-contrib-less', 'grunt-istanbul', 'grunt-includes', 'grunt-verbosity','grunt-contrib-uglify',
+              'grunt-contrib-cssmin']
+
+  grunt.loadNpmTasks(task) for task in npmTasks
+
+  registerTasks =
+    'lint': ['coffeelint:scripts']
+    'compile_js_development': ['coffee:src', 'coffee:specs']
+    'compile_js_production': ['coffee:src', 'coffee:specs', 'uglify:production']
+    'compile_css_development': ['less:development']
+    'compile_css_production': ['less:production', 'cssmin']
+    'test': [ 'instrument', 'jasmine']
+    'test_development': [ 'verbosity:quiet', 'clean', 'compile_js_development', 'instrument', 'jasmine', 'lint']
+    'test_production': [ 'verbosity:quiet', 'clean', 'compile_js_production', 'instrument', 'jasmine', 'lint']
+    'dist': ['copy:dist', 'includes:templates', 'compress', 'copy:archive']
+    'package_development': ['test_development', 'compile_css_development', 'dist' ]
+    'package': ['test_production', 'compile_css_production', 'dist' ]
+    'default': 'package_development'
+
+
+  grunt.registerTask(k, v) for k,v of registerTasks

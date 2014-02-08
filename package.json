@@ -1,0 +1,37 @@
+{
+  "name": "MoT",
+  "version": "0.0.0",
+  "description": "Millionaires of Tomorrow Webpage",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JashaadGaines/MillionairesOfTomorrow.git"
+  },
+  "author": "Jashaad Gaines",
+  "license": "BSD",
+  "gitHead": "903dd227ef144973ddb7e54f9ddc574c5a3263be",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "phantomjs": "~1.9.7-1",
+    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-contrib-coffee": "~0.10.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-coffeelint": "0.0.8",
+    "grunt-includes": "~0.4.1",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-istanbul": "~0.2.4",
+    "grunt-verbosity": "~0.2.2",
+    "grunt-contrib-compress": "~0.6.1"
+  }
+}
