@@ -7,8 +7,9 @@ module.exports = (grunt) ->
       src: 'app/scripts/src'
       lib: 'app/scripts/lib'
       plugins: 'app/scripts/plugins'
-      less: 'app/styles/less'
-      css: 'app/styles/css'
+      style: 'app/assets/stylesheets'
+      less: 'app/assets/stylesheets/less'
+      css: 'app/assets/stylesheets/css'
       coffee: 'app/scripts/coffee'
       instrumentDir: 'build/instrument'
 
@@ -38,8 +39,8 @@ module.exports = (grunt) ->
               jquery: '../../../../../<%= meta.lib %>/jquery'
               lib: '../../../../../<%= meta.lib %>'
               plugins: '../../../../../<%= meta.plugins %>'
-              stubs: '../../../../../specs/stubs'
-              device: '../../../../../specs/devices/test-device'
+
+
 
     coffee:
       src:
@@ -56,21 +57,16 @@ module.exports = (grunt) ->
 
     less:
       development:
-        options: paths: ["<%= meta.less %>/partials"]
-        files: [expand: true, cwd: '<%= meta.less %>/main', src:  ['**/*.less'], dest: 'build/app/styles/css', ext: '.css' ]
+        options: paths: ["<%= meta.less %>"]
+        files: [expand: true, cwd: '<%= meta.less %>/main', src:  ['**/*.less'], dest: 'build/app/assets/stylesheets/css', ext: '.css' ]
       production:
         options: paths: ["<%= meta.less %>/partials"]
         files: [expand: true, cwd: '<%= meta.less %>/main', src:  ['**/*.less'], dest: '<%= meta.css %>', ext: '.css' ]
 
-    compress:
-      main:
-        options:
-          archive: 'build/app.zip'
-        files: [
-          cwd: 'build/app',
-          expand: true,
-          src: ['**/*']
-        ]
+    stylus:
+      development:
+#        options: paths: ["<%= meta.style %>"]
+        files: [expand: true, cwd: '<%= meta.style %>', src:  ['**/*.styl'], dest: 'app/assets/stylesheets/build/', ext: '.css' ]
 
     copy:
       dist:
@@ -86,7 +82,7 @@ module.exports = (grunt) ->
 
     watch:
       files: ['<%= meta.coffee %>/**/*.coffee', '<%= meta.less %>/**/*.less', '<%= meta.app %>/**/*.html']
-      tasks: ['coffee:src', 'less:development', 'copy:dist', 'includes:templates', 'compress', 'copy:archive']
+      tasks: ['coffee:src', 'less:development', 'stylus:development', 'copy:dist', 'includes:templates', 'copy:archive']
 
     instrument:
       files: '<%= meta.src %>/**/*.js'
@@ -114,9 +110,9 @@ module.exports = (grunt) ->
         dest: 'build/app/styles/css'
 
   npmTasks = ['grunt-contrib-jasmine', 'grunt-contrib-coffee', 'grunt-contrib-clean',
-              'grunt-contrib-watch', 'grunt-contrib-compress', 'grunt-contrib-copy', 'grunt-coffeelint',
+              'grunt-contrib-watch', 'grunt-contrib-copy', 'grunt-coffeelint',
               'grunt-contrib-less', 'grunt-istanbul', 'grunt-includes', 'grunt-verbosity','grunt-contrib-uglify',
-              'grunt-contrib-cssmin']
+              'grunt-contrib-cssmin', 'grunt-contrib-stylus']
 
   grunt.loadNpmTasks(task) for task in npmTasks
 
@@ -124,12 +120,12 @@ module.exports = (grunt) ->
     'lint': ['coffeelint:scripts']
     'compile_js_development': ['coffee:src', 'coffee:specs']
     'compile_js_production': ['coffee:src', 'coffee:specs', 'uglify:production']
-    'compile_css_development': ['less:development']
+    'compile_css_development': ['less:development', 'stylus:development']
     'compile_css_production': ['less:production', 'cssmin']
     'test': [ 'instrument', 'jasmine']
     'test_development': [ 'verbosity:quiet', 'clean', 'compile_js_development', 'instrument', 'jasmine', 'lint']
     'test_production': [ 'verbosity:quiet', 'clean', 'compile_js_production', 'instrument', 'jasmine', 'lint']
-    'dist': ['copy:dist', 'includes:templates', 'compress', 'copy:archive']
+    'dist': ['copy:dist', 'includes:templates', 'copy:archive']
     'package_development': ['test_development', 'compile_css_development', 'dist' ]
     'package': ['test_production', 'compile_css_production', 'dist' ]
     'default': 'package_development'
