@@ -7,7 +7,7 @@ a{text-decoration:none}
 header{z-index:1;position:absolute;top:0;width:100%;padding:0 20px;}
 header > div{max-width:600px;margin:0 auto;padding-top:150px;height:380px;text-align:center;color:White;}
 header > div a{font-size:.8em;letter-spacing:.08em;color:rgba(255,255,255,0.85);line-height:30px;padding:7px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:2em;transition:all .3s ease;}
-header > div a:hover{background:#fff;color:Gray}
+header > div a:hover{background:#fff;color:#fff}
 header p{font-size:1.5em;margin-bottom:.7em;font-family:Times New Roman}
 h1{font-weight:800;font-size:3.4em;margin-bottom:.2em}
 nav{max-width:600px;margin:0 auto;height:60px;border-top:1px rgba(255,255,255,0.35) solid;}
