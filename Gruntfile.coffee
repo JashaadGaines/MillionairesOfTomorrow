@@ -4,16 +4,16 @@ module.exports = (grunt) ->
     meta:
       pkg: grunt.file.readJSON('package.json')
       app: 'app'
-      src: 'app/scripts/src'
-      lib: 'app/scripts/lib'
+      src: 'app/assets/javascripts'
+      lib: '.grunt/lib'
       plugins: 'app/scripts/plugins'
       style: 'app/assets/stylesheets'
       less: 'app/assets/stylesheets/less'
       css: 'app/assets/stylesheets/css'
-      coffee: 'app/scripts/coffee'
+      coffee: 'app/assets/javascripts/coffee'
       instrumentDir: 'build/instrument'
 
-    clean: ['<%= meta.src %>', 'specs/**/*.js', '<%= meta.css %>', 'build','reports', '*.nw']
+    clean: [ 'specs/**/*.js', '<%= meta.css %>/build', 'build','reports', '*.nw']
 
     coffeelint:
       options:
@@ -22,7 +22,7 @@ module.exports = (grunt) ->
         no_trailing_whitespace: level: "warn"
 
 
-      scripts:  ['Gruntfile.coffee', 'app/scripts/coffee/**/*.coffee', 'specs/**/*.coffee']
+      scripts:  ['Gruntfile.coffee', 'app/assets/javascripts/coffee/**/*.coffee', 'specs/**/*.coffee']
 
     jasmine:
       options:
@@ -32,7 +32,7 @@ module.exports = (grunt) ->
           consolidate: 'true'
         template: require('grunt-template-jasmine-requirejs')
         templateOptions:
-          pathToRequireJS: 'app/scripts/lib/require/require.js'
+          pathToRequireJS: '.grunt/lib'
           requireConfig:
             baseUrl:  '<%= meta.instrumentDir %>/<%= meta.src %>'
             paths:
@@ -81,7 +81,7 @@ module.exports = (grunt) ->
         files: [ src: 'build/app.zip', dest: 'package.nw' ]
 
     watch:
-      files: ['<%= meta.coffee %>/**/*.coffee', '<%= meta.less %>/**/*.less', '<%= meta.app %>/**/*.html']
+      files: ['<%= meta.coffee %>/**/*.coffee', '<%= meta.less %>/**/*.less', '<%= meta.app %>/**/*.html','<%=meta.style%>/**/*.styl']
       tasks: ['coffee:src', 'less:development', 'stylus:development', 'copy:dist', 'includes:templates', 'copy:archive']
 
     instrument:
