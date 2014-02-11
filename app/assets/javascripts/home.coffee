@@ -5,6 +5,7 @@ setOpacityWithScrollValue = (element,dividend) ->
 
 title: "Millionaires of Tomorrow"
 
+
 init: $(window).scroll ->
         setOpacityWithScrollValue((".blur").css, 240)
 
