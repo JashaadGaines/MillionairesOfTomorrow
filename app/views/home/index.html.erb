@@ -1,42 +1,59 @@
+<!DOCTYPE html>
 <!--<h1>Millionaires of Tommorrow</h1>-->
 <!--<center> <p> Mission statement: The mission of Millionaires of Tomorrow is-->
     <!--to advance the knowledge of business in our youth to train forthcoming CEO's-->
     <!--and business people everywhere for a successful economic future </p><center>-->
 <head>
-    <link rel="stylesheet" href="app/assets/stylesheets/build/home.css">
-
+    <meta charset=”utf-8”>
+    <link rel=”stylesheet” href=”app/assets/stylesheets/css/bootstrap.css”  type=”text/css”/>
+    <link rel="stylesheet" href="app/assets/stylesheets/build/home.css" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src=”app/assets/javascripts/js/bootstrap.js”></script>
+    <script src=”app/assets/javascripts/home.coffee”></script>
 </head>
-
 <div class="container">
-    <header>
-        <nav role="navi">
-            <ul>
-                <li>
-                    <a href="#">MoT</a>
-                </li>
-                <li>
-                    <a href="#">Our Mission</a>
-                </li>
-                <li>
-                    <a href="#">About Us</a>
-                </li>
-                <li>
-                    <a href="#">Donate</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <section class="imageBack">
-        <div class = "blur"></div>
-        <div id="quote">
-            <h1 text>Great Quote </h1>
-            <p></p>
-            Learn more
+    <div class="navbar" id="topNavi">
+        <div class="navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Donate</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+    <div class="hero-unit">
+        <h1>Great Quote that's super inspiring that has something to do with the picture</h1>
 
+        <p> - Quote Author</p>
+
+        <a href="#" class="btn btn-large btn-success">Get Started</a>
+    </div>
+    <div class="row">
+        <div class="span4" id="classroom">
+            <h4 class="muted text-center">Learn principles of start up business</h4>
+            <p>brief info</p>
+            <a href="#" class="btn"><i class="icon-user"></i> Our Clients</a>
+        </div>
+        <div class="span4">
+            <h4 class="muted text-center">Know Our Employees</h4>
+            <p>breif info </p>
+            <a href="#" class="btn btn-success"><i class="icon-star icon-white"></i> Our Employees</a>
+        </div>
+        <div class="span4">
+            <h4 class="muted text-center">Reach Us</h4>
+            <p>more brief statement/info</p>
+            <a href="#" class="btn btn-info">Contact Us</a>
+        </div>
+        <hr>
+        <div class="footer">
+            <p>&copy; 2013</p>
+        </div>
+    </d iv>
 </div>
-
-</div>
-
-<div></div>

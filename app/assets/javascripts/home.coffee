@@ -12,7 +12,7 @@ title: "Millionaires of Tomorrow"
 
 init:
   $(window).scroll ->
-        appendToClass("imageBack", "blur")
+        appendToClass("hero-unit", "blur")
         setOpacityWithScrollValue((".image .blur").css, 240)
 
 

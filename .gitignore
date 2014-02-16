@@ -5,5 +5,4 @@
 
 /log/*.log
 /tmp
-
-/.idea/*.xml
+/.idea/*
