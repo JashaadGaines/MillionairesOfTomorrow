@@ -7,7 +7,7 @@ appendToClass = (name ,newClassName) ->
     element = document.getElementsByClassName name ;
     element.className += " " + newClassName
 
-title: "Millionaires of Tomorrow"
+title: "Millionadires of Tomorrow"
 
 
 init:

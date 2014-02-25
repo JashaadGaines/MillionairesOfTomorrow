@@ -1,9 +1,16 @@
-.container{box-shadow:2px 0 3px #888}
+.container.custom1{box-shadow:2px 0 3px #888;width:1100px}
 .container .container{box-shadow:none;border:0 none}
-#topNavi{margin-bottom:0;background-color}
+.container #topNavi.navbar{margin-bottom:0}
 .navbar-inverse .navbar-inner{-webkit-border-radius:1px;-moz-border-radius:1px;border-radius:1px}
 .hero-unit{background-image:url("http://humbleinsights.files.wordpress.com/2013/03/journey.jpg");background-size:cover}
 .container .hero-unit h1{font-size:40px}
 .container .hero-unit p{font-style:italic}
 .container .hero-unit{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;color:#fff;text-align:right;height:290px}
-.container .row #classroom.span4{background-image:url("/images/youngAdultClassroom.jpg")}
+.footer{font-size:11px;color:#fff;background-color:#212121}
+.container.custom1 .inner .row{position:relative;left:5%;margin-top:29px;margin-bottom:35px;min-height:250px}
+.span4{height:200px;margin:0 10px;}
+.span4 h4{position:relative;bottom:0}
+#classroom{background:url("http://i846.photobucket.com/albums/ab28/jagaines28/02c0b5c9-b28a-4293-9fe7-341a381a0462_zpsb6a6f1cc.jpg");background-size:cover;height:100%}
+#startBiz{background:url("http://i846.photobucket.com/albums/ab28/jagaines28/f408b0db-a42a-458f-a077-bee5d5949e97_zpse595b7a4.jpg");background-size:cover;height:100%}
+h2.ourMission{font:normal normal lighter 21px normal;color:#9a9b91;text-align:center;padding:0 100px;}
+h2.ourMission p{position:relative}
