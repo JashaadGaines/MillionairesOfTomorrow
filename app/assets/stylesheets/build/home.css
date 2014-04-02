@@ -1,20 +1,19 @@
-body{font-size:14px;font-family:Sans-Serif}
-*{box-sizing:border-box}
-a{text-decoration:none}
-.blurImg{position:relative;width:100%;height:440px;z-index:-1;}
-.blurImg > div{position:fixed;width:100%;height:440px;background-repeat:no-repeat;background-size:cover;background-position:center center}
-.blur{opacity:0}
-header{z-index:1;position:absolute;top:0;width:100%;padding:0 20px;}
-header > div{width:100%;margin:0 auto;padding-top:150px;height:380px;text-align:right;color:White;}
-header > div a{font-size:.8em;letter-spacing:.08em;color:rgba(255,255,255,0.85);line-height:30px;padding:7px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:2em;transition:all .3s ease;}
-header > div a:hover{background:#fff;color:#fff}
-header p{font-size:1.5em;margin-bottom:.7em;font-family:Times New Roman}
-h1{font-weight:800;font-size:3.4em;margin-bottom:.2em}
-nav{margin:0 auto;height:60px;border-top:1px rgba(255,255,255,0.35) solid;}
-nav ul{text-align:center;}
-nav ul li{display:inline-block;margin-right:20px;}
-nav ul li a{font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,0.5);transition:color .3s linear;line-height:60px;display:block;}
-nav ul li a.active{box-shadow:0 -1px 0 #fff}
-nav ul li a.active,nav ul li a:hover{color:#fff}
-.container{height:1300px;background:#fff;z-index:1;padding:0 20px;}
-.container div{max-width:600px;margin:0 auto;padding-top:40px}
+.container.custom1{box-shadow:2px 0 3px #888;width:1100px}
+.container .container{box-shadow:none;border:0 none}
+.container #topNavi.navbar{margin-bottom:0}
+.navbar-inverse .navbar-inner{-webkit-border-radius:1px;-moz-border-radius:1px;border-radius:1px}
+.hero-unit{background-image:url("http://i846.photobucket.com/albums/ab28/jagaines28/2582a028-52a4-4c9b-9d41-b3d3b749f4ab_zps3e66ac55.jpg");background-size:cover}
+.hero-unit p{color:#000}
+.container .hero-unit h1{font-size:40px}
+.container .hero-unit p{font-style:italic}
+.container .hero-unit{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;color:#fff;text-align:right;height:290px}
+.footer{font-size:11px;color:#fff;background-color:#212121}
+.container.custom1 .inner .row{position:relative;left:5%;margin-top:29px;margin-bottom:35px;min-height:250px}
+.span4{height:200px;margin:0 10px;max-width:300px;}
+.span4 h4{position:relative;bottom:0}
+.container .inner .row .span4 .box{background-size:cover;height:100%}
+#classroom{background:url("http://i846.photobucket.com/albums/ab28/jagaines28/02c0b5c9-b28a-4293-9fe7-341a381a0462_zpsb6a6f1cc.jpg")}
+#startBiz{background:url("http://i846.photobucket.com/albums/ab28/jagaines28/f408b0db-a42a-458f-a077-bee5d5949e97_zpse595b7a4.jpg")}
+#action{background:url("http://i846.photobucket.com/albums/ab28/jagaines28/3e8ea0fe-47d0-41c3-bbfd-a4ce004afc6d_zpsa871d04f.jpg")}
+h2.ourMission{font:normal normal lighter 21px normal;color:#9a9b91;text-align:center;padding:0 100px;}
+h2.ourMission p{position:relative}

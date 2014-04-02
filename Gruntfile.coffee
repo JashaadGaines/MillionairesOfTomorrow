@@ -11,6 +11,7 @@ module.exports = (grunt) ->
       less: 'app/assets/stylesheets/less'
       css: 'app/assets/stylesheets/css'
       coffee: 'app/assets/javascripts/coffee'
+      scripts: 'app/assets/javascripts'
       instrumentDir: 'build/instrument'
 
     clean: [ 'specs/**/*.js', '<%= meta.css %>/build', 'build','reports', '*.nw']
@@ -44,8 +45,8 @@ module.exports = (grunt) ->
 
     coffee:
       src:
-        options: bare: true
-        files: [ expand: true, cwd:  '<%= meta.coffee %>', src:  ['**/*.coffee'], dest: '<%= meta.src %>', ext: '.js' ]
+#        options: bare: true
+        files: [ expand: true, cwd:  '<%= meta.scripts %>', src:  ['**/*.coffee'], dest: 'app/assets/javascripts', ext: '.js' ]
 
       specs:
         options: bare: true
